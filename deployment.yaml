@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: niwanthi-calculator
-          image: niwanthiedi/calculator-service-6-1p:latest
+          image: niwanthiedi/calculator-service-6-1p:v2
           ports:
             - containerPort: 3000

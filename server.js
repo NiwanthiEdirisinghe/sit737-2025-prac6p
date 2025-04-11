@@ -134,6 +134,26 @@ app.get("/modulo", (req, res) => {
     }
 });
 
+app.get("/logarithm", (req, res) => {
+    try {
+        const number = parseFloat(req.query.number);
+        const base = parseFloat(req.query.base);
+
+        validateNumbers(number, base, req);
+
+        if (number <= 0 || base <= 0 || base === 1) {
+            throw new Error("Number and base must be > 0, and base cannot be 1.");
+        }
+
+        const result = Math.log(number) / Math.log(base);
+        logger.info(`Logarithm: log base ${base} of ${number} = ${result}`);
+
+        res.json({ status: 200, result });
+    } catch (error) {
+        sendErrorResponse(res, 400, error.message);
+    }
+});
+
 const validateNumbers = (num1, num2, req) => {
     if (isNaN(num1) || isNaN(num2)) {
         logger.error(`Validation Error: ${errorMsg} - Request: ${req.url} - Query: ${JSON.stringify(req.query)}`);
