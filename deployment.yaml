@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: niwanthi-calculator-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: niwanthi-calculator
+  template:
+    metadata:
+      labels:
+        app: niwanthi-calculator
+    spec:
+      containers:
+        - name: niwanthi-calculator
+          image: niwanthiedi/calculator-service-6-1p:latest
+          ports:
+            - containerPort: 3000
